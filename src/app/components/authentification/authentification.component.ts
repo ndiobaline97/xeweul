@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthentificationService } from 'src/app/services/authentification.service';
+import {  AuthentificationService } from 'src/app/services/authentification.service';
 import { Router } from '@angular/router';
 import{ JwtHelperService} from '@auth0/angular-jwt';
 
@@ -16,7 +16,7 @@ export class AuthentificationComponent implements OnInit {
   jwt:string;
   username:string;
   roles: Array<string>;
-  constructor(private _auth: AuthentificationService,
+  constructor(private _auth:AuthentificationService,
               private _router: Router) { }
 
   ngOnInit() {
@@ -31,8 +31,20 @@ export class AuthentificationComponent implements OnInit {
          localStorage.setItem('token',res.token);
          this.jwt=res.token;
          this.parseJWT();
-    
-         this._router.navigate(["/register"])
+     
+         
+         if(this.isAdmin){
+          this._router.navigate(["/register"])
+         } else if(this.isAdminP){
+          this._router.navigate(["/ajouteruser"])
+         }
+         else if(this.isCaissier){
+          this._router.navigate(["/depot"])
+         }
+         else if(this.isUser){
+          this._router.navigate(["/envoie"])
+         }
+         
        },
        err => {
          if(err instanceof HttpErrorResponse){   
@@ -50,5 +62,27 @@ export class AuthentificationComponent implements OnInit {
      this.username=obJWT.obj;
      this.roles=obJWT.roles;
    }
+
+
+
+   isAdmin(){
+    return this._auth.isAdmin();
+  }
+
+  isUser(){
+    return this._auth.isUser();
+  }
+
+  isAdminP(){
+    return this._auth.isAdminP();
+  }
+
+  isCaissier(){
+    return this._auth.isCaissier();
+  }
+
+  isAuthenticated(){
+    return this._auth.isAuthenticated()
+  }
   
 }
