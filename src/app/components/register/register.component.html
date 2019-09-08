@@ -6,7 +6,7 @@
             <div class="content">
               <div class="container-fluid">
                   <div class="card-body">
-                      <form  #imageForm=ngForm (ngSubmit)="onsubmit(imageForm.value)" >
+                    <form #imageForm=ngForm (ngSubmit)="onsubmit(imageForm.value)">
                         <div class="form-group">
                           <label for="exampleFormControlInput1">NINEA</label>
                           <input type="texte" class="form-control  rounded-0" name="ninea" #ninea ngModel required="required"
@@ -15,7 +15,7 @@
                         <div class="form-group">
                           <label for="exampleFormControlInput1">ENTREPRISE</label>
                           <input type="texte" class="form-control rounded-0" id="exampleFormControlInput1"
-                            placeholder="name@example.com" name="raisonsociale" #raisonsociale required="required"  ngModel>
+                            placeholder="name@example.com" name="entreprise" #raisonsociale required="required"  ngModel>
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">ADRESSE</label>
@@ -35,13 +35,13 @@
                       
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Login</label>
-                          <input type="text" #login ngModel required="required" name="login" class="form-control" id="username"  class="form-control  rounded-0"
+                          <input type="text" #username ngModel required="required" name="username" class="form-control" id="username"  class="form-control  rounded-0"
                             placeholder="Login">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Password</label>
                             <input type="password" class="form-control  rounded-0" id="exampleFormControlInput1"
-                              placeholder="Password" name="password"  ngModel>
+                              placeholder="Password" name="plainPassword" #plainPassword  ngModel>
                           </div>
         
                          <div class="form-group">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GestionService } from 'src/app/services/gestion.service';
 
 @Component({
   selector: 'app-listepartenaire',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListepartenaireComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(private user:GestionService) { }
 
+  
+  public users = [];
+  
   ngOnInit() {
-  }
 
+    this.user.getAlluser()
+    .subscribe(
+      res=>this.users = res,
+      err =>console.error(err)
+    );
+  }
 }
