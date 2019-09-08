@@ -23,24 +23,32 @@ export class AuthentificationComponent implements OnInit {
   }
 
   loginUser () { 
-    this._auth.loginUser(this.loginUserData)
-    .subscribe(
-      res =>  {
-       console.log(res)
-        localStorage.setItem('token',res.token);
-        this.jwt=res.token;
-        this.parseJWT();
-   
-        this._router.navigate(["/register"])
-      },
-      err => {
-        if(err instanceof HttpErrorResponse){   
-        if(err.status === 401){
-          this._router.navigate(['/login'])
-        }
-      }
-    }
-    )
-  }
+    //console.log(this.loginUserData);
+     this._auth.loginUser(this.loginUserData)
+     .subscribe(
+       res =>  {
+        console.log(res)
+         localStorage.setItem('token',res.token);
+         this.jwt=res.token;
+         this.parseJWT();
+    
+         this._router.navigate(["/register"])
+       },
+       err => {
+         if(err instanceof HttpErrorResponse){   
+         if(err.status === 401){
+           this._router.navigate(['/login'])
+         }
+       }
+     }
+     )
+   }
+   parseJWT(){
+     let jwtHelper= new JwtHelperService();
+     let obJWT=jwtHelper.decodeToken(this.jwt);
+     console.log(obJWT);
+     this.username=obJWT.obj;
+     this.roles=obJWT.roles;
+   }
   
 }

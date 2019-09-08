@@ -23,6 +23,7 @@ import { SideBarUserComponent } from './bar-components/side-bar-user/side-bar-us
 import { EnvoieComponent } from './components/envoie/envoie.component';
 import { RetraitComponent } from './components/retrait/retrait.component';
 import { OperationsComponent } from './components/operations/operations.component';
+import { GestionService } from './services/gestion.service';
 
 
 @NgModule({
@@ -53,7 +54,7 @@ import { OperationsComponent } from './components/operations/operations.componen
     HttpClientModule,
 
   ],
-  providers: [AuthentificationService,AuthentificationGuard,
+  providers: [AuthentificationService,AuthentificationGuard,GestionService,
    ],
   bootstrap: [AppComponent]
 })

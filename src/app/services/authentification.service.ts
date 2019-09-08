@@ -51,7 +51,7 @@ export class AuthentificationService {
     return localStorage.getItem('token')
   }
   isAdmin(){
-    return this.roles.indexOf('ROLE_SUPERADMIN')>=0;
+    return this.roles.indexOf('ROLE_SUPER_ADMIN')>=0;
   }
   isCaissier(){
     return this.roles.indexOf('ROLE_CAISSIER')>=0;
