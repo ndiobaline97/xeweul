@@ -17,6 +17,6 @@ export class GestionService {
 
   getAlluser() :Observable<any>{
     var Headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
-    return this.http.get<any>(this.host);
+    return this.http.get<any>(this.host ,{headers: Headers} );
   }
 }

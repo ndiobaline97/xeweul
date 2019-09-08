@@ -18,10 +18,10 @@ export class AuthentificationService {
   
   loginUser(user)
   {
-    let headers = new HttpHeaders();
-    headers.append('content-type', 'application/x-www-from-urlencoded')
+   // let headers = new HttpHeaders();
+  //  headers.append('content-type', 'application/x-www-from-urlencoded')
 
-    return this.http.post<any>(this._loginUrl,user,{headers : headers})
+    return this.http.post<any>(this._loginUrl,user)
   }
   loggedIn(){
     return  localStorage.getItem('token')
