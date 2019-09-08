@@ -27,7 +27,7 @@
                               <td>{{util.roles}}</td>
                               <td>{{util.partenaire.entreprise}}</td>
                               <td> <button type="button" [ngClass]="{
-                                  'btn-success': util.statut=='debloquer',
+                                'btn btn-success': util.statut=='actif',
                                   'btn-danger': util.statut=='bloquer'
                                   }"(click)="bloquerUser(util.id)">
                                   {{util.statut}}</button>

@@ -24,7 +24,7 @@ export class PartenaireService {
     formData.append('plainPassword', partenaire.plainPassword);
     formData.append('email', partenaire.email);
     formData.append('telephone', partenaire.telephone);
-   // formData.append('imageName', fileToUpload, fileToUpload.name);
+   formData.append('imageName', fileToUpload, fileToUpload.name);
 
     return this.http.post(host, formData , {headers : headers});
   }

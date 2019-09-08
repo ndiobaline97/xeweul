@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-   /*  handleFileInput(File : FileList){
+    handleFileInput(File : FileList){
       this.fileToUpload=File.item(0);
      var reader= new FileReader();
      reader.onload=(event:any)=>{
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
      }
      reader.readAsDataURL(this.fileToUpload);
-    } */
+    } 
 
     onsubmit (data:any){
      console.log(data);
