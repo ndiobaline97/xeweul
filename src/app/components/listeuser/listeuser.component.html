@@ -5,16 +5,14 @@
             
             <div class="content">
               <div class="container-fluid">
-                    <h1>Liste Utilisateur</h1>  
+                   
                     <div class="panel panel-default">
                       <div class="panel-heading"> <h3 align="center">Liste des Utilisateur</h3></div>
                       <div class="panel-body">
                         <table class="table">
                           <tr class="table-info">
                             <th >Id</th>
-                            <th >Username</th>
-                            <th> Prenom</th>
-                            <th> Nom</th>
+                            <th >Username</th>                         
                             <th>Telephone</th>
                             <th>Rôle</th>
                             <th>Partenaire</th>
@@ -25,9 +23,7 @@
 
                                   <td>{{util.id}}</td>
                               <td>{{util.username}}</td>
-                              <td>{{util.password}}</td>
-                               <td>{{util.nom}}</td>
-                              <td>{{util.telephone}}</td>
+                              <td>{{util.partenaire.telephone}}</td>
                               <td>{{util.roles}}</td>
                               <td>{{util.partenaire.entreprise}}</td>
                               <td> <button type="button" [ngClass]="{
