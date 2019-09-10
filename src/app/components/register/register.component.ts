@@ -17,8 +17,6 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
     }
 
-
-
     handleFileInput(File : FileList){
       this.fileToUpload=File.item(0);
      var reader= new FileReader();

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
+import{ FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,7 @@ import { RetraitComponent } from './components/retrait/retrait.component';
 import { OperationsComponent } from './components/operations/operations.component';
 import { GestionService } from './services/gestion.service';
 import { CommonModule } from '@angular/common';
+import { PartenaireService } from './services/partenaire.service';
 
 
 @NgModule({
@@ -55,12 +56,11 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     BrowserModule,
     CommonModule,
-    ReactiveFormsModule,
-    
-   
-
+    ReactiveFormsModule
   ],
-  providers: [AuthentificationService,AuthentificationGuard,GestionService,
+  providers: [AuthentificationService,
+    AuthentificationGuard,
+
    ],
   bootstrap: [AppComponent]
 })

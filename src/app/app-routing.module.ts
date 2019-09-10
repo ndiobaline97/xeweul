@@ -27,7 +27,6 @@ const routes: Routes = [
   { path: 'ajouteruser', component: AjouteruserComponent},
   { path: 'listeuser', component: ListeuserComponent},
   { path: 'listeoperation', component: ListeoperationComponent},
-  { path: 'listeoperation', component: ListeoperationComponent},
   { path: 'depot', component: DepotComponent},
   { path: 'envoie', component: EnvoieComponent},
   { path: 'retrait', component: RetraitComponent},

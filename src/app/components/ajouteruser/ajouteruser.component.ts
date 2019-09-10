@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PartenaireService } from 'src/app/services/partenaire.service';
+import { AuthentificationService } from 'src/app/services/authentification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajouteruser',
@@ -6,10 +9,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ajouteruser.component.css']
 })
 export class AjouteruserComponent implements OnInit {
+  Partenaire = {} ;
+  imageUrl: string="/assets/img/default.png ";
+  fileToUpload: File=null;
+  profils;
+    constructor(private partenairesService :PartenaireService , private authService :AuthentificationService ,private router: Router) { }
 
-  constructor() { }
+    ngOnInit() {
+      this.partenairesService.getAllProfil().subscribe(
+        res=>{
+          console.log(res);
+          this.profils=res
+         
+        });
+    }
 
-  ngOnInit() {
-  }
+    handleFileInput(File : FileList){
+      this.fileToUpload=File.item(0);
+     var reader= new FileReader();
+     reader.onload=(event:any)=>{
+       this.imageUrl=event.target.result;
 
+     }
+     reader.readAsDataURL(this.fileToUpload);
+    } 
+
+    onsubmit (data:any){
+     console.log(data);
+     console.log(this.fileToUpload);
+      this.partenairesService.addUser(data, this.fileToUpload)
+      .subscribe(
+        data=>{
+          console.log('done');
+
+        }, err=>{
+         console.log(err);
+        }
+      )
+    }
 }
