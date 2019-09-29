@@ -39,7 +39,6 @@ export class GestionService {
     return this.http.post(host, formData , {headers : headers});
   }
 
-
   rechercheCompte(data) : Observable<any[]>  {
     var headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
     return  this.http.post<any>(this.recherchecompte,data, {headers : headers});

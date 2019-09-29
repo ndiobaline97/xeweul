@@ -14,14 +14,15 @@ import { DepotComponent } from './components/depot/depot.component';
 import { EnvoieComponent } from './components/envoie/envoie.component';
 import { RetraitComponent } from './components/retrait/retrait.component';
 import { OperationsComponent } from './components/operations/operations.component';
+import { AuthentificationGuard } from './authentification.guard';
 
 const routes: Routes = [ 
   { path: '', redirectTo: '/authentification', pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent},
+  { path: 'authentification', component: AuthentificationComponent},
+  { path: 'register', component: RegisterComponent,canActivate: [AuthentificationGuard]},
   { path: 'side-bar',  component: SideBarComponent},
   { path: 'nav-bar', component: NavBarComponent},
   { path: 'footer', component: FooterComponent},
-  { path: 'authentification', component: AuthentificationComponent},
   { path: 'listepartenaire', component: ListepartenaireComponent},
   { path: 'ajoutercompte', component: AjouterCompteComponent},
   { path: 'ajouteruser', component: AjouteruserComponent},

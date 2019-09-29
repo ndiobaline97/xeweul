@@ -10,12 +10,13 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   Partenaire = {} ;
-  imageUrl: string="/assets/img/default.png ";
+  imageUrl: string="/assets/assets/img/image.jpg";
   fileToUpload: File=null;
     constructor(private partenairesService :PartenaireService , private authService :AuthentificationService ,private router: Router) { }
 
     ngOnInit() {
     }
+    
 
     handleFileInput(File : FileList){
       this.fileToUpload=File.item(0);
@@ -28,12 +29,12 @@ export class RegisterComponent implements OnInit {
     } 
 
     onsubmit (data:any){
-     console.log(data);
-     console.log(this.fileToUpload);
+    //  console.log(data);
+    //  console.log(this.fileToUpload);
       this.partenairesService.addPartenaire(data, this.fileToUpload)
       .subscribe(
         data=>{
-          console.log('done');
+          // console.log('done');
 
         }, err=>{
          console.log(err);

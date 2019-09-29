@@ -15,7 +15,7 @@ export class AuthentificationComponent implements OnInit {
   loginUserData = {}
   jwt:string;
   username:string;
-  roles: Array<string>;
+  roles: string;
   constructor(private _auth:AuthentificationService,
               private _router: Router) { }
 
@@ -23,25 +23,22 @@ export class AuthentificationComponent implements OnInit {
   }
 
   loginUser () { 
-    //console.log(this.loginUserData);
      this._auth.loginUser(this.loginUserData)
      .subscribe(
        res =>  {
         console.log(res)
-         localStorage.setItem('token',res.token);
-         this.jwt=res.token;
-         this.parseJWT();
+        let jwt=res.token;
+        this._auth.saveToken(jwt);
      
-         
-         if(this.isAdmin){
+         if(this.isAdmin()){
           this._router.navigate(["/register"])
-         } else if(this.isAdminP){
+         } else if(this.isAdminP()){
           this._router.navigate(["/ajouteruser"])
          }
-         else if(this.isCaissier){
+         else if(this.isCaissier()){
           this._router.navigate(["/depot"])
          }
-         else if(this.isUser){
+         else if(this.isUser()){
           this._router.navigate(["/envoie"])
          }
          
@@ -55,15 +52,6 @@ export class AuthentificationComponent implements OnInit {
      }
      )
    }
-   parseJWT(){
-     let jwtHelper= new JwtHelperService();
-     let obJWT=jwtHelper.decodeToken(this.jwt);
-     console.log(obJWT);
-     this.username=obJWT.obj;
-     this.roles=obJWT.roles;
-   }
-
-
 
    isAdmin(){
     return this._auth.isAdmin();

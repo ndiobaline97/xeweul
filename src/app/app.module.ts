@@ -59,7 +59,7 @@ import { PartenaireService } from './services/partenaire.service';
     ReactiveFormsModule
   ],
   providers: [AuthentificationService,
-    AuthentificationGuard,
+    AuthentificationGuard
 
    ],
   bootstrap: [AppComponent]

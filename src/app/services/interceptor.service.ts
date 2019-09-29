@@ -1,4 +1,4 @@
-/* import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpHeaders, HttpInterceptor } from '@angular/common/http';
 import { AuthentificationService } from './authentification.service';
 
@@ -17,4 +17,4 @@ export class interceptorService implements HttpInterceptor{
     })
     return next.handle(tokenizedReq)
   }
-} */
+} 

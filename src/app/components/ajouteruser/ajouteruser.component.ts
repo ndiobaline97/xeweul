@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AjouteruserComponent implements OnInit {
   Partenaire = {} ;
-  imageUrl: string="/assets/img/default.png ";
+  imageUrl: string="/assets/assets/img/image.jpg";
   fileToUpload: File=null;
   profils;
     constructor(private partenairesService :PartenaireService , private authService :AuthentificationService ,private router: Router) { }
@@ -18,7 +18,7 @@ export class AjouteruserComponent implements OnInit {
     ngOnInit() {
       this.partenairesService.getAllProfil().subscribe(
         res=>{
-          console.log(res);
+          //console.log(res);
           this.profils=res
          
         });
@@ -35,15 +35,15 @@ export class AjouteruserComponent implements OnInit {
     } 
 
     onsubmit (data:any){
-     console.log(data);
-     console.log(this.fileToUpload);
+     //console.log(data);
+     //console.log(this.fileToUpload);
       this.partenairesService.addUser(data, this.fileToUpload)
       .subscribe(
         data=>{
-          console.log('done');
+          //console.log('done');
 
         }, err=>{
-         console.log(err);
+         //console.log(err);
         }
       )
     }

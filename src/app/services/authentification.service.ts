@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AuthentificationService {
   jwt:string;
   username:string;
-  roles:Array<string>;
+  roles:string;
 
   constructor(private http:HttpClient ,private router: Router
     ) { }
@@ -17,26 +17,27 @@ export class AuthentificationService {
   
   loginUser(user)
   {
-   // let headers = new HttpHeaders();
-  //  headers.append('content-type', 'application/x-www-from-urlencoded')
 
     return this.http.post<any>(this._loginUrl,user)
   }
   loggedIn(){
-    return  localStorage.getItem('token')
+    return !!localStorage.getItem('token')
   }
   logout(){
     localStorage.removeItem('token');
    this.initParams();
-   return  this.router.navigate(['authentification']);
+   return  this.router.navigate(['/authentification']);
   }
   parseJWT(){
     let jwtHelper= new JwtHelperService();
     let obJWT=jwtHelper.decodeToken(this.jwt);
    
-    this.username=obJWT.obj;
-    console.log(obJWT.roles);
+    this.username=obJWT.username;
+    //console.log(obJWT.roles);
     this.roles=obJWT.roles;
+    //stocker le role et le username sur localstorage
+    localStorage.setItem('roles',this.roles);
+    localStorage.setItem('username',this.username);
   }
 
   initParams(){
@@ -49,25 +50,32 @@ export class AuthentificationService {
 
     return localStorage.getItem('token')
   }
+  saveToken(jwt:string){
+    localStorage.setItem("token",jwt);
+    this.jwt = jwt;
+    this.parseJWT();
+  }
+
   isAdmin(){
-    return this.roles.indexOf('ROLE_SUPER_ADMIN')>=0;
+    if(localStorage.getItem('roles')=='ROLE_SUPER_ADMIN')
+    return true;
   }
   isCaissier(){
-    return this.roles.indexOf('ROLE_CAISSIER')>=0;
+    if(localStorage.getItem('roles')=='ROLE_CAISSIER')
+    return true;
    }
 
     isAdminP(){
-      return this.roles.indexOf('ROLE_ADMINP')>=0;
+      if(localStorage.getItem('roles')=='ROLE_ADMIN_PARTENAIRE')
+      return true;
       }
 
   isUser(){
-    return this.roles.indexOf('ROLE_USER')>=0;
+    if(localStorage.getItem('roles')=='ROLE_USER')
+    return true;
   }
   isAuthenticated(){
    return this.roles &&( this.isAdmin() || this.isUser() || this.isAdminP() || this.isCaissier() );
   }
-  loadToken(){
-    this.jwt=localStorage.getItem('token');
-    this.parseJWT();
-  }
+ 
 }
